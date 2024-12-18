@@ -6,11 +6,25 @@
     <title>Minesweeper Game</title>
     <link rel="stylesheet" href="css/minesweeper.css" />
   </head>
-  <body onload="onInitGame()">
+  <body onload="onInitGame('beginner')">
     
     <h1>Minesweeper Game</h1>
+    
+    <div class="stats">
+      <p>Cells Revealed: <span class="cells-revealed"></span></p>
+      <p>Mines Left: <span class="mines-left"></span></p>
+      <p>Time: <span class="time-elapsed">0</span> seconds</p>
+    </div>
+    
+    <button onclick="onInitGame('beginner')">Beginner</button>
+    <button onclick="onInitGame('medium')">Medium</button>
+    <button onclick="onInitGame('expert')">Expert</button>
 
+    <div class="level-info"></div>
+    
     <div class="board-container"></div>
+
+
 
     <script src="js/utils.js"></script>
     <script src="js/mine.js"></script>

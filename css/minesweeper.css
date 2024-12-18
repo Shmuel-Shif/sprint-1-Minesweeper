@@ -2,6 +2,7 @@ body {
   margin: 0;
   text-align: center;
   background-color: rgb(198, 204, 189);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
@@ -13,12 +14,20 @@ h1 {
 }
 
 table {
+  background-color: rgb(175, 175, 175);
   border-collapse: collapse;
   margin: 20px auto;
+  cursor: pointer;
 }
+
 td {
   border: 1px solid black;
   width: 40px;
   height: 40px;
   text-align: center;
+}
+
+td:hover{
+  background-color: rgb(139, 139, 139);
+
 }

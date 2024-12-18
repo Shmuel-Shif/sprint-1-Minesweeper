@@ -1,15 +1,14 @@
 'use strict'
 
-function buildBoard() {
+function buildBoard(size) {
     
-    const SIZE = 3
     var board = []
     
-    for (let i = 0; i < SIZE; i++) {
+    for (let i = 0; i < size; i++) {
         
         let row = [];
         
-        for (let j = 0; j < SIZE; j++) {
+        for (let j = 0; j < size; j++) {
             
             row.push({
                 minesAroundCount: 0,
@@ -35,15 +34,14 @@ function renderBoard(mat, selector) {
         
         for (let j = 0; j < mat[0].length; j++) {
             
-            const cell = mat[i][j]
             const className = `cell cell-${i}-${j}`
-            console.log(mat);
+            // console.log(mat);
             
             strHTML += `<td class="${className}"
-            onclick="onCellClicked(this, ${i}, ${j})"
-            oncontextmenu="onCellMarked(this, ${i}, ${j}); 
-            return false;">
-            </td> `
+                         onclick="onCellClicked(this, ${i}, ${j})"
+                         oncontextmenu="onCellMarked(this, ${i}, ${j}); 
+                         return false;">
+                         </td> `
         }
         strHTML += `</tr>`;
     }
@@ -51,5 +49,19 @@ function renderBoard(mat, selector) {
     
     const elSelector = document.querySelector(selector)
     elSelector.innerHTML = strHTML
-    // console.log('Matrix:', mat)
+    console.log('Matrix:', mat)
 }
+
+function getBoardConfig(level) {
+    switch (level) {
+      case 'beginner':
+        return { size: 4, minesCount: 2 };
+      case 'medium':
+        return { size: 8, minesCount: 14 };
+      case 'expert':
+        return { size: 12, minesCount: 32 };
+      default:
+        console.error('Invalid level:', level);
+        return { size: 4, minesCount: 2 }; 
+    }
+  }
