@@ -11,3 +11,14 @@ h1 {
   font-family: "Courier New", monospace;
   text-shadow: 2px 2px 5px black;
 }
+
+table {
+  border-collapse: collapse;
+  margin: 20px auto;
+}
+td {
+  border: 1px solid black;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+}
