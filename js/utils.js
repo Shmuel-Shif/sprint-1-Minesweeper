@@ -45,6 +45,7 @@ function renderBoard(mat, selector) {
         }
         strHTML += `</tr>`;
     }
+    
     strHTML += `</tbody></table>`
     
     const elSelector = document.querySelector(selector)
@@ -52,16 +53,20 @@ function renderBoard(mat, selector) {
     console.log('Matrix:', mat)
 }
 
-function getBoardConfig(level) {
+function getBoardConfig(level ='beginner') {
+
+  if (level !== 'beginner' && level !== 'medium' && level !== 'expert') {
+    console.error('Invalid level:', level)
+    level = 'beginner'
+  }
     switch (level) {
       case 'beginner':
-        return { size: 4, minesCount: 2 };
+        return { size: 4, minesCount: 2 }
       case 'medium':
-        return { size: 8, minesCount: 14 };
+        return { size: 8, minesCount: 14 }
       case 'expert':
-        return { size: 12, minesCount: 32 };
+        return { size: 12, minesCount: 32 }
       default:
-        console.error('Invalid level:', level);
-        return { size: 4, minesCount: 2 }; 
+        return { size: 4, minesCount: 2 }
     }
   }

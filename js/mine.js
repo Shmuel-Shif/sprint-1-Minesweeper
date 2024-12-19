@@ -7,20 +7,25 @@ function setMines(board, minesCount, firstClickRow, firstClickCol) {
     const i = Math.floor(Math.random() * board.length)
     const j = Math.floor(Math.random() * board[0].length)
 
-    if (board[i][j].isMine || (i === firstClickRow && j === firstClickCol)) continue
+    if (board[i][j].isMine || (i === firstClickRow && j === firstClickCol))
+       continue
 
     board[i][j].isMine = true
     minesPlaced++
+    console.log(`Mine placed at: ${i}, ${j}`); 
   }
+  console.log('All mines placed.');
 }
 
 
-function onCellClicked(elCell, i, j) {
 
+
+function onCellClicked(elCell, i, j) {
   if (!gGame.isOn || gBoard[i][j].isShown) return
 
   if (gGame.firstClick) {
     setMines(gBoard, gGame.minesCount, i, j)
+    setMinesNegsCount(gBoard)
     gGame.firstClick = false
   }
 
@@ -30,26 +35,58 @@ function onCellClicked(elCell, i, j) {
 
   if (gBoard[i][j].isMine) {
     elCell.innerHTML = '💣'
-    checkGameOver(false)
+    loseLife()
   } else {
     elCell.innerHTML = gBoard[i][j].minesAroundCount || ''
     if (gBoard[i][j].minesAroundCount === 0) {
       expandShown(gBoard, i, j)
     }
   }
-   updateCellsRevealed()
-  checkGameOver(true)
+
+  updateCellsRevealed()
+  checkForWin()  
 }
 
 
 
 function onCellMarked(elCell, i, j) {
+  if (!gGame.isOn || gBoard[i][j].isShown && !gBoard[i][j].isMine) 
+      return 
 
-  if (!gGame.isOn || gBoard[i][j].isShown) return 
-  
-  gBoard[i][j].isMarked = !gBoard[i][j].isMarked
-  elCell.innerHTML = gBoard[i][j].isMarked ? '🚩' : ''
-  gGame.markedCount += gBoard[i][j].isMarked ? 1 : -1
-  
+  if (gBoard[i][j].isMine && !gBoard[i][j].isMarked) {
+
+    elCell.innerHTML = '🚩'
+    gBoard[i][j].isMarked = true
+    gGame.markedCount++
+
+  } else if (!gBoard[i][j].isMine) {
+
+    gBoard[i][j].isMarked = !gBoard[i][j].isMarked
+    elCell.innerHTML = gBoard[i][j].isMarked ? '🚩' : ''
+    gGame.markedCount += gBoard[i][j].isMarked ? 1 : -1
+
+  }
+
+  checkForWin()
   updateMinesLeft()
 }
+
+
+
+function loseLife() {
+  if (gGame.hearts.length > 0) {
+      gGame.hearts.pop(); 
+      updateLivesDisplay();
+  }
+
+  if (gGame.hearts.length === 0) {
+    checkGameOver(false); 
+  }
+}
+
+function updateLivesDisplay() {
+  const elLives = document.querySelector('.lives')
+  elLives.innerHTML = gGame.hearts.join('')
+}
+
+  

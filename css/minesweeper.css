@@ -29,5 +29,21 @@ td {
 
 td:hover{
   background-color: rgb(139, 139, 139);
-
+  
 }
+
+.game-message {
+  font-size: 2em;
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.give-Hint{
+  background-color: rgb(198, 204, 189);
+  font-size: 2em;
+  border: none;
+  cursor: pointer;
+}
+

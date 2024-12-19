@@ -1,34 +1,54 @@
 'use strict'
 
-let gTimerInterval
+let gAllMinesMarked = true
+let gTimerInterval = null
 let gBoard
 let gGame
+let gLevel = getBoardConfig()
 
-function onInitGame(level) {
+function initGame(level = gLevel)  {
   console.log('play game', level)
 
   const { size, minesCount } = getBoardConfig(level)
   gBoard = buildBoard(size)
-  setMines(gBoard, minesCount)
   setMinesNegsCount(gBoard)
-
-
+ 
   gGame = {
     isOn: true,
     shownCount: 0,
     markedCount: 0,
     minesCount: minesCount,
     secsPassed: 0,
-    firstClick: true
-
+    firstClick: true,
+    // lives: 3,
+    hearts: ['❤️','❤️','❤️']
   }
 
   startTimer()
-  
   renderBoard(gBoard, ".board-container")
   updateMinesLeft()
   updateCellsRevealed()
+  updateTimer()
+  checkForWin()
 }
+
+function onInitGame(level) {
+  gLevel = level || gLevel
+  initGame(gLevel)
+}
+
+function restartGame() {
+  clearInterval(gTimerInterval)
+  initGame(gLevel)
+
+  gGame.lives = 3
+  gGame.hearts = ['❤️','❤️','❤️']
+  updateLivesDisplay()
+
+  const elMessage = document.querySelector('.game-message')
+  elMessage.innerHTML = ''
+}
+
 
 function updateCellsRevealed() {
 
@@ -49,7 +69,15 @@ function updateTimer() {
 
 function startTimer() {
 
-  gGame.timerInterval = setInterval(() => {
+  if (gTimerInterval) {
+    clearInterval(gTimerInterval)
+  }
+
+  gGame.secsPassed = 0
+
+  updateTimer()
+
+  gTimerInterval = setInterval(() => {
     if (gGame.isOn) {
       gGame.secsPassed++
       updateTimer()
@@ -107,18 +135,33 @@ function expandShown(board, row, col) {
   }
 }
 
+function checkForWin() {
+
+  if (gGame.markedCount === gGame.minesCount) {
+    const allFlagsCorrect = gBoard.every(row => 
+
+      row.every(cell => 
+        (cell.isMine && cell.isMarked) || (!cell.isMine && !cell.isMarked)
+      )
+    );
+    
+    if (allFlagsCorrect) {
+      checkGameOver(true)
+    }
+  }
+}
+
 function checkGameOver(isWin) {
 
-    if (!isWin) {
-        alert('Game Over!')
-        startTimer()
-        gGame.isOn = false
-        return
-    }
-    if (gGame.shownCount + gGame.markedCount ===
-         gBoard.length * gBoard[0].length) {
-         alert('You Win!')
-         startTimer()
-         gGame.isOn = false
-    }
+  const elMessage = document.querySelector('.game-message')
+
+  if (isWin) {
+    elMessage.innerHTML = 'You Win!'
+    gGame.isOn = false
+    stopTimer()
+  } else {
+    elMessage.innerHTML = `You Lost Game Over! ${gGame.lives.length} lives remaining.`
+    gGame.isOn = false
+    stopTimer()
+  }
 }
