@@ -6,6 +6,7 @@ let gBoard
 let gGame
 let gLevel = getBoardConfig()
 
+
 function initGame(level = gLevel)  {
   console.log('play game', level)
 
@@ -44,12 +45,12 @@ function updateCellsRevealed() {
 function updateMinesLeft() {
   const elMinesLeft = document.querySelector('.mines-left')
   elMinesLeft.innerHTML = gGame.minesCount - gGame.markedCount
-  }
+}
 
 function updateTimer() {
     const elTimer = document.querySelector('.time-elapsed')
     elTimer.innerHTML = gGame.secsPassed
-  }
+}
 
 function startTimer() {
      if (gTimerInterval) {
@@ -117,12 +118,23 @@ function expandShown(board, row, col) {
     for (let j = col - 1; j <= col + 1; j++) {
 
       if (i === row && j === col) continue;
+
       if (i >= 0 && i < board.length && j >= 0 && j < board[0].length) {
         const cell = board[i][j];
+        const elCell = document.querySelector(`.cell-${i}-${j}`)
 
-        if (!cell.isShown && !cell.isMine) { 
-          const elCell = document.querySelector(`.cell-${i}-${j}`);
-          onCellClicked(elCell, i, j); 
+        if (!cell.isShown) {
+          elCell.classList.add('shown')
+          cell.isShown = true
+          gGame.shownCount++
+
+          if (elCell.innerHTML === '') {
+            elCell.innerHTML = cell.minesAroundCount || ''
+          }
+
+          if (cell.minesAroundCount === 0) { 
+            expandShown(board, i, j)
+          }
         }
       }
     }
@@ -133,7 +145,6 @@ function checkForWin() {
 
   if (gGame.markedCount === gGame.minesCount) {
     const allFlagsCorrect = gBoard.every(row => 
-
       row.every(cell => 
         (cell.isMine && cell.isMarked) || (!cell.isMine && !cell.isMarked)
       )

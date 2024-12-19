@@ -1,5 +1,8 @@
 'use strict'
 
+
+
+
 function setMines(board, minesCount, firstClickRow, firstClickCol) {
   let minesPlaced = 0
 
@@ -8,16 +11,15 @@ function setMines(board, minesCount, firstClickRow, firstClickCol) {
     const j = Math.floor(Math.random() * board[0].length)
 
     if (board[i][j].isMine || (i === firstClickRow && j === firstClickCol))
-       continue
+      continue
 
     board[i][j].isMine = true
     minesPlaced++
-    console.log(`Mine placed at: ${i}, ${j}`); 
   }
-  console.log('All mines placed.');
 }
 
 function onCellClicked(elCell, i, j) {
+
   if (!gGame.isOn || gBoard[i][j].isShown) return
 
   if (gGame.firstClick) {
@@ -26,22 +28,34 @@ function onCellClicked(elCell, i, j) {
     gGame.firstClick = false
   }
 
-  gBoard[i][j].isShown = true
-  gGame.shownCount++
-  elCell.classList.add('shown')
-
   if (gBoard[i][j].isMine) {
     elCell.innerHTML = '💣'
     loseLife()
   } else {
     elCell.innerHTML = gBoard[i][j].minesAroundCount || ''
     if (gBoard[i][j].minesAroundCount === 0) {
-      expandShown(gBoard, i, j)
+      expandShown(gBoard, i, j) 
     }
   }
 
+  gBoard[i][j].isShown = true
+  gGame.shownCount++
+  elCell.classList.add('shown')
   updateCellsRevealed()
-  checkForWin()  
+  checkForWin()
+}
+
+function clearPreviousNeighborDisplay() {
+  const previousNeighbors = document.querySelectorAll('.neighbor')
+  previousNeighbors.forEach(neighbor => {
+    neighbor.classList.remove('.neighbor')
+  })
+}
+
+function showNeighbors(elCell, i, j) {
+  clearPreviousNeighborDisplay()
+  expandShown(gBoard, i, j)
+  elCell.classList.add('neighbor')
 }
 
 function onCellMarked(elCell, i, j) {

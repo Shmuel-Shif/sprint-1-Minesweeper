@@ -1,5 +1,7 @@
 'use strict'
 
+
+
 function buildBoard(size) {
     
     var board = []
@@ -23,7 +25,6 @@ function buildBoard(size) {
     return board
 }
 
-
 function renderBoard(mat, selector) {
     
     let strHTML = `<table><tbody>`
@@ -35,7 +36,6 @@ function renderBoard(mat, selector) {
         for (let j = 0; j < mat[0].length; j++) {
             
             const className = `cell cell-${i}-${j}`
-            // console.log(mat);
             
             strHTML += `<td class="${className}"
                          onclick="onCellClicked(this, ${i}, ${j})"
@@ -69,4 +69,4 @@ function getBoardConfig(level ='beginner') {
       default:
         return { size: 4, minesCount: 2 }
     }
-  }
+}

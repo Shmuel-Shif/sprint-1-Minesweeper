@@ -1,5 +1,6 @@
 'use strict'
 
+
 let remainingHints = 3
 
 
@@ -18,7 +19,7 @@ function giveHint() {
 
 }
   
-  function updateHintCounter() {
+function updateHintCounter() {
 
     const elHint = document.querySelectorAll('.hint')
 
@@ -30,7 +31,7 @@ function giveHint() {
         elHint[i].textContent = "💡"
       }
     }
-  }
+}
 
 function hideHints() {
     const elHint = document.querySelectorAll('.hint')
@@ -42,10 +43,9 @@ function hideHints() {
         elHint[i].textContent = ''
       }
     }, 1000)
-  }
+}
   
-
-  function getRevealedCell() {
+function getRevealedCell() {
 
     for (let i = 0; i < gBoard.length; i++) {
         for (let j = 0; j < gBoard[0].length; j++) {
@@ -57,8 +57,6 @@ function hideHints() {
     return null
 }
 
-
- 
 function revealCellAndNeighbors(i, j) {
 
     for (let di = i - 1; di <= i + 1; di++) {
@@ -82,9 +80,8 @@ function revealCellAndNeighbors(i, j) {
         }
       }
     }
-  }
+}
   
-
 function revealCell(i, j) {
     const cell = gBoard[i][j];
     const elCell = document.querySelector(`.cell-${i}-${j}`);
@@ -101,5 +98,5 @@ function revealCell(i, j) {
         elCell.textContent = ''
       }, 1000)
     }
-  }
+}
   
