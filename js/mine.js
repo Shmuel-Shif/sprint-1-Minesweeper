@@ -17,9 +17,6 @@ function setMines(board, minesCount, firstClickRow, firstClickCol) {
   console.log('All mines placed.');
 }
 
-
-
-
 function onCellClicked(elCell, i, j) {
   if (!gGame.isOn || gBoard[i][j].isShown) return
 
@@ -47,8 +44,6 @@ function onCellClicked(elCell, i, j) {
   checkForWin()  
 }
 
-
-
 function onCellMarked(elCell, i, j) {
   if (!gGame.isOn || gBoard[i][j].isShown && !gBoard[i][j].isMine) 
       return 
@@ -71,16 +66,30 @@ function onCellMarked(elCell, i, j) {
   updateMinesLeft()
 }
 
+function restartGame() {
+  clearInterval(gTimerInterval)
+  initGame(gLevel)
 
+  remainingHints = 3  
+  updateHintCounter()
+
+  gGame.lives = 3
+  gGame.hearts = ['❤️','❤️','❤️']
+  updateLivesDisplay()
+  
+  const elMessage = document.querySelector('.game-message')
+  elMessage.innerHTML = ''
+  
+}
 
 function loseLife() {
   if (gGame.hearts.length > 0) {
-      gGame.hearts.pop(); 
-      updateLivesDisplay();
+      gGame.hearts.pop()
+      updateLivesDisplay()
   }
 
   if (gGame.hearts.length === 0) {
-    checkGameOver(false); 
+    checkGameOver(false) 
   }
 }
 
@@ -89,4 +98,3 @@ function updateLivesDisplay() {
   elLives.innerHTML = gGame.hearts.join('')
 }
 
-  

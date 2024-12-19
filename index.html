@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Minesweeper Game</title>
     <link rel="stylesheet" href="css/minesweeper.css" />
   </head>
@@ -10,28 +11,38 @@
     
     <h1>Minesweeper Game</h1>
     
-    <p class="lives">❤️❤️❤️</p>
+    <div class="lives">❤️❤️❤️</div>
 
-    <button class="give-Hint"onclick="giveHint()">💡</button>
-
-    <div class="stats">
-      <p>Cells Revealed: <span class="cells-revealed"></span></p>
-      <p>Mines Left: <span class="mines-left"></span></p>
-      <p>Time: <span class="time-elapsed">0</span> seconds</p>
+    <div>
+      <button class="hint" onclick="giveHint()">💡</button>
+      <button class="hint" onclick="giveHint()">💡</button>
+      <button class="hint" onclick="giveHint()">💡</button>
     </div>
     
-    <button onclick="restartGame()" class="restart-Game">😊</button>
+    <div> 
+    <button class="button-play" onclick="onInitGame('beginner')">Beginner</button>
+    <button class="button-play" onclick="onInitGame('medium')">Medium</button>
+    <button class="button-play" onclick="onInitGame('expert')">Expert</button>
+    </div>
     
-    <button onclick="onInitGame('beginner')">Beginner</button>
-    <button onclick="onInitGame('medium')">Medium</button>
-    <button onclick="onInitGame('expert')">Expert</button>
+    <button onclick="restartGame()" class="restart-Game">Restart Game</button>
+    
+    <div class="stats">
+      <span class="cells-revealed"></span>
+      <span class="mines-left"></span>
+      <span class="time-elapsed">
+      </div>
 
-    <div class="board-container"></div>
-
-    <div class="game-message"></div>
-
+      <div class="box-game"> 
+        <div class="game-message"></div>
+        <div class="board-container"></div>
+      </div>
+      
+      
     <script src="js/utils.js"></script>
+    <script src="js/hint.js"></script>
     <script src="js/mine.js"></script>
     <script src="js/game.js"></script>
   </body>
 </html>
+ 

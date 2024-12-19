@@ -20,7 +20,6 @@ function initGame(level = gLevel)  {
     minesCount: minesCount,
     secsPassed: 0,
     firstClick: true,
-    // lives: 3,
     hearts: ['❤️','❤️','❤️']
   }
 
@@ -37,27 +36,12 @@ function onInitGame(level) {
   initGame(gLevel)
 }
 
-function restartGame() {
-  clearInterval(gTimerInterval)
-  initGame(gLevel)
-
-  gGame.lives = 3
-  gGame.hearts = ['❤️','❤️','❤️']
-  updateLivesDisplay()
-
-  const elMessage = document.querySelector('.game-message')
-  elMessage.innerHTML = ''
-}
-
-
 function updateCellsRevealed() {
-
   const elCellsRevealed = document.querySelector('.cells-revealed')
   elCellsRevealed.innerHTML = gGame.shownCount
 }
 
 function updateMinesLeft() {
-
   const elMinesLeft = document.querySelector('.mines-left')
   elMinesLeft.innerHTML = gGame.minesCount - gGame.markedCount
   }
@@ -68,21 +52,32 @@ function updateTimer() {
   }
 
 function startTimer() {
-
-  if (gTimerInterval) {
-    clearInterval(gTimerInterval)
+     if (gTimerInterval) {
+         clearInterval(gTimerInterval)
   }
 
-  gGame.secsPassed = 0
+       gGame.secsPassed = 0
 
-  updateTimer()
+       updateTimer()
 
-  gTimerInterval = setInterval(() => {
-    if (gGame.isOn) {
-      gGame.secsPassed++
-      updateTimer()
-    }
-  }, 1000);
+       gTimerInterval = setInterval(() => {
+         if (gGame.isOn) {
+            gGame.secsPassed++
+            updateTimer()
+        }
+       }, 1000);
+}
+
+function updateTimer() {
+  let minutes = Math.floor(gGame.secsPassed / 60);  
+  let seconds = gGame.secsPassed % 60;  
+
+  if (seconds < 10) {
+      seconds = '0' + seconds;
+  }
+
+  let timerDisplay = document.querySelector('.time-elapsed');
+  timerDisplay.textContent = minutes + ':' + seconds;
 }
 
 function stopTimer() {
@@ -98,7 +93,6 @@ function setMinesNegsCount(board) {
     }
   }
 }
-
 
 function countMinesAround(board, row, col) {
 
@@ -152,7 +146,7 @@ function checkForWin() {
 }
 
 function checkGameOver(isWin) {
-
+  
   const elMessage = document.querySelector('.game-message')
 
   if (isWin) {
@@ -160,7 +154,7 @@ function checkGameOver(isWin) {
     gGame.isOn = false
     stopTimer()
   } else {
-    elMessage.innerHTML = `You Lost Game Over! ${gGame.lives.length} lives remaining.`
+    elMessage.innerHTML = 'You Lost. Game Over!'
     gGame.isOn = false
     stopTimer()
   }

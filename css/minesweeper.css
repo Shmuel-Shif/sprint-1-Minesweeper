@@ -1,4 +1,4 @@
-body {
+body{
   margin: 0;
   text-align: center;
   background-color: rgb(198, 204, 189);
@@ -8,42 +8,146 @@ body {
 h1 {
   color: rgb(32, 28, 28);
   font-size: 3em;
-  margin-top: 2.5rem;
+  margin-top: 1rem;
   font-family: "Courier New", monospace;
   text-shadow: 2px 2px 5px black;
 }
 
-table {
-  background-color: rgb(175, 175, 175);
-  border-collapse: collapse;
-  margin: 20px auto;
+.lives{
+  font-size: 1.5em;
+}
+
+.hint{
+  border: none;
+  background-color: rgb(198, 204, 189);
+  font-size: 1.5em;
+  margin-top: 1rem;
   cursor: pointer;
 }
 
-td {
-  border: 1px solid black;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-}
-
-td:hover{
-  background-color: rgb(139, 139, 139);
+.button-play{
+  color: rgb(32, 28, 28);
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  margin: 1rem;
+  width: 6em;
+  height: 2em;
+  cursor: pointer;
+  font-size: 15px;
+  background-color: rgb(199, 199, 199);
+  text-shadow: 2px 2px 5px rgb(104, 101, 101);
+  box-shadow: -3px 3px 2px 4px rgba(0, 0, 0, 0.2);
   
 }
 
-.game-message {
-  font-size: 2em;
-  color: red;
-  text-align: center;
-  margin-top: 20px;
+.stats{
+  margin-top: 1em;
+}
+
+.restart-Game{
+  margin: 1rem;
+  width: 10em;
+  height: 2em;
+  font-family: "Courier New", monospace;
   font-weight: bold;
-}
-
-.give-Hint{
-  background-color: rgb(198, 204, 189);
-  font-size: 2em;
-  border: none;
   cursor: pointer;
+  font-size: 15px;
+  background-color: rgb(199, 199, 199);
+  text-shadow: 2px 2px 5px rgb(75, 75, 75);
+  box-shadow: -3px 3px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+.cells-revealed {
+   background-color: rgb(189, 187, 187);
+   margin: 1.5em;
+   padding: 1rex;
+   border: 2px solid black;
+   font-family: "Courier New", monospace;
+   font-weight: bold;
+  }
+  
+  .mines-left {
+    background-color: rgb(189, 187, 187);
+    margin: 1.5em;
+    padding: 1rex;
+    border: 2px solid black;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+  }
+  
+  .time-elapsed{
+    background-color: rgb(189, 187, 187);
+    margin: 1.5em;
+    padding: 1rex;
+    border: 2px solid black;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+}
+
+.box-game {
+  box-shadow: 1px 3px 20px 20px rgba(0, 0, 0, 0.2);
+  background-color: rgb(143, 143, 143);
+  margin-top: 1em;
+  padding: 1em;
+  display: inline-block; 
+  padding: 20px; 
+  aspect-ratio: 1 / 1; 
+  border-radius: 10px; 
+  border: 2px solid black;
+
+}
+
+table {
+  background-color: rgb(175, 175, 175);
+  margin: 20px auto;
+  cursor: pointer;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+  border: 2px solid black;
+
+}
+
+td {
+  color: blue;
+  font-weight: bold;
+  box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid black;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  padding: 0;
+  background-color: rgb(175, 175, 175);
+}
+
+td:hover{
+  background-color: rgb(145, 145, 145);
+}
+
+.cell {
+  border: 2px solid black;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  padding: 0;
+  background-color: rgb(175, 175, 175);
+}
+
+.cell.hint {
+  background-color: rgba(255, 255, 255, 0.5); 
+  font-size: 13px;
+  color: black;
+  line-height: 40px; 
+}
+
+.cell.shown {
+  background-color: #d3d3d3;
+  font-size: 16px;
+}
+
+.game-message {
+  font-size: 1.5em;
+  text-shadow: 2px 2px 5px rgb(75, 75, 75);
+  text-align: center;
+  font-weight: bold;
+  font-family: "Courier New", monospace;
+
+} 
