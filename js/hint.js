@@ -3,22 +3,20 @@
 
 let remainingHints = 3
 
-
 function giveHint() {
-    if (remainingHints > 0) {
-        remainingHints--
-        updateHintCounter()
+  if (remainingHints > 0) {
+      remainingHints--  
+      updateHintCounter()
 
-        let revealedCell = getRevealedCell()
-        if (revealedCell) {
-            revealCellAndNeighbors(revealedCell.i, revealedCell.j)
-        }
-    } else {
-        alert('No hints left')
-    }
-
+      let lastClickedCell = getLastClickedCell()  
+      if (lastClickedCell) {
+          revealCellAndNeighbors(lastClickedCell.i, lastClickedCell.j) 
+      }
+  } else {
+      alert('No hints left')  
+  }
 }
-  
+
 function updateHintCounter() {
 
     const elHint = document.querySelectorAll('.hint')
@@ -43,18 +41,6 @@ function hideHints() {
         elHint[i].textContent = ''
       }
     }, 1000)
-}
-  
-function getRevealedCell() {
-
-    for (let i = 0; i < gBoard.length; i++) {
-        for (let j = 0; j < gBoard[0].length; j++) {
-            if (gBoard[i][j].isShown && !gBoard[i][j].isMarked) {
-                return { i, j };
-            }
-        }
-    }
-    return null
 }
 
 function revealCellAndNeighbors(i, j) {

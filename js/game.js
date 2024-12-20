@@ -11,6 +11,7 @@ function initGame(level = gLevel)  {
   console.log('play game', level)
 
   const { size, minesCount } = getBoardConfig(level)
+
   gBoard = buildBoard(size)
   setMinesNegsCount(gBoard)
  
@@ -35,6 +36,15 @@ function initGame(level = gLevel)  {
 function onInitGame(level) {
   gLevel = level || gLevel
   initGame(gLevel)
+
+  gGame.lives = 3
+  gGame.hearts = ['❤️', '❤️', '❤️']
+  remainingHints = 3
+  updateLivesDisplay()
+  updateHintCounter()
+
+  const elMessage = document.querySelector('.game-message')
+  elMessage.innerHTML = ''
 }
 
 function updateCellsRevealed() {
@@ -117,10 +127,11 @@ function expandShown(board, row, col) {
   for (let i = row - 1; i <= row + 1; i++) {
     for (let j = col - 1; j <= col + 1; j++) {
 
-      if (i === row && j === col) continue;
+      if (i === row && j === col) continue
 
       if (i >= 0 && i < board.length && j >= 0 && j < board[0].length) {
-        const cell = board[i][j];
+       
+        const cell = board[i][j]
         const elCell = document.querySelector(`.cell-${i}-${j}`)
 
         if (!cell.isShown) {
@@ -128,11 +139,10 @@ function expandShown(board, row, col) {
           cell.isShown = true
           gGame.shownCount++
 
-          if (elCell.innerHTML === '') {
-            elCell.innerHTML = cell.minesAroundCount || ''
-          }
-
-          if (cell.minesAroundCount === 0) { 
+          if (cell.minesAroundCount > 0) {
+            elCell.innerHTML = cell.minesAroundCount
+          } else {
+            elCell.innerHTML = ''
             expandShown(board, i, j)
           }
         }
