@@ -9,14 +9,21 @@
   </head>
   <body onload="onInitGame(gLevel)">
     
-    <h1>Minesweeper Game</h1>
-    
-    <div class="lives">❤️❤️❤️</div>
-
     <div>
-       <button class="hint" onclick="giveHint()">💡</button>
-       <button class="hint" onclick="giveHint()">💡</button>
-       <button class="hint" onclick="giveHint()">💡</button>
+        <span class="title">Minesweeper Game</span>
+        <button class="toggle-sound-btn" onclick="toggleSound()">🔊</button>
+        <audio class="background-music" loop>
+          <source src="saund/Background.mp3" type="audio/mp3">
+        </audio>
+        <button class="toggle-dark-mode-btn" onclick="toggleDarkMode()">🌙</button>
+    </div>
+
+    <div class="lives">❤️❤️❤️</div>
+    
+    <div>
+      <button class="hint" onclick="giveHint()">💡</button>
+      <button class="hint" onclick="giveHint()">💡</button>
+      <button class="hint" onclick="giveHint()">💡</button>
     </div>
     
     <div> 
@@ -38,10 +45,10 @@
     
     <div class="game-message"></div>
 
-    <script src="js/utils.js"></script>
-    <script src="js/hint.js"></script>
-    <script src="js/mine.js"></script>
-    <script src="js/game.js"></script>
+    <script src="js/boardUtils.js"></script>
+    <script src="js/mines.js"></script>
+    <script src="js/hints.js"></script>
+    <script src="js/minesweeper.js"></script>
   </body>
 </html>
  

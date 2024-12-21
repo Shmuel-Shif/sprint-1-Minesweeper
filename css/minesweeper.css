@@ -1,16 +1,81 @@
-body{
+body {
   margin: 0;
   text-align: center;
   background-color: rgb(198, 204, 189);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-h1 {
+body.dark-mode {
+  background-color: #121212;  
+}
+
+body.dark-mode .title {
+  color: rgb(198, 204, 189); 
+}
+
+body.dark-mode .game-message {
+  color: rgb(198, 204, 189); 
+}
+
+body.dark-mode .hint {
+  background-color: #121212;  
+}
+
+body.dark-mode .toggle-sound-btn {
+  background-color: rgb(198, 204, 189);  
+}
+
+body.dark-mode .toggle-dark-mode-btn {
+  background-color: rgb(198, 204, 189);  
+}
+
+.title {
   color: rgb(32, 28, 28);
   font-size: 3em;
   margin: 1rem 1rem 0.5rem 1rem;
   font-family: "Courier New", monospace;
   text-shadow: 2px 2px 5px black;
+  font-weight: bold;
+}
+
+.toggle-sound-btn {
+  font-size: 0.8em;
+   background-color: rgb(32, 28, 28);
+   margin: 0.4em;
+   padding: 1rex;
+   border: 2px solid black;
+   font-family: "Courier New", monospace;
+   font-weight: bold;
+   cursor: pointer;
+   border-radius: 50%;
+   text-shadow: 2px 2px 5px rgb(104, 101, 101);
+   box-shadow: -3px 3px 2px 4px rgba(0, 0, 0, 0.2);
+   transition: transform 0.2s ease;
+  }
+  
+.toggle-sound-btn:hover{
+  background-color: rgb(49, 49, 49);
+  transform: scale(1.1);
+}
+
+.toggle-dark-mode-btn {
+  font-size: 0.8em;
+  background-color: rgb(32, 28, 28);
+  margin: 0.4em;
+  padding: 1rex;
+  border: 2px solid black;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 50%;
+  text-shadow: 2px 2px 5px rgb(104, 101, 101);
+  box-shadow: -3px 3px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.toggle-dark-mode-btn:hover{
+  background-color: rgb(49, 49, 49);
+  transform: scale(1.1);
 }
 
 .lives{
@@ -37,39 +102,48 @@ h1 {
   background-color: rgb(199, 199, 199);
   text-shadow: 2px 2px 5px rgb(104, 101, 101);
   box-shadow: -3px 3px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
 }
 
-.stats{
-  margin-top: 1em;
+.button-play:hover{
+  background-color: rgb(155, 154, 154);
+  transform: scale(1.1);
 }
 
 .cells-revealed {
     background-color: rgb(189, 187, 187);
-    margin: 1.5em;
+    margin: 2em;
     padding: 1rex;
     border: 2px solid black;
     font-family: "Courier New", monospace;
     font-weight: bold;
-  }
+    text-shadow: 2px 2px 5px rgb(104, 101, 101);
+    box-shadow: -3px 3px 2px 4px rgba(0, 0, 0, 0.2);
+}
   
 .mines-left {
     background-color: rgb(189, 187, 187);
-    margin: 1.5em;
+    margin: 1.2em;
     padding: 1rex;
     border: 2px solid black;
     font-family: "Courier New", monospace;
     font-weight: bold;
-  }
+    text-shadow: 2px 2px 5px rgb(104, 101, 101);
+    box-shadow: -3px 3px 2px 4px rgba(0, 0, 0, 0.2);
+}
   
-.time-elapsed{
+.time-elapsed { 
     background-color: rgb(189, 187, 187);
-    margin: 1.5em;
+    margin: 1.2em;
     padding: 1rex;
     border: 2px solid black;
     font-family: "Courier New", monospace;
     font-weight: bold;
-  }
-   
+    text-shadow: 2px 2px 5px rgb(104, 101, 101);
+    box-shadow: -3px 3px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
 .box-game {
     box-shadow: 1px 3px 20px 20px rgba(0, 0, 0, 0.2);
     background-color: rgb(143, 143, 143);
