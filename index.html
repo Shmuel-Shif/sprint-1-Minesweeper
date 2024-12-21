@@ -14,31 +14,30 @@
     <div class="lives">❤️❤️❤️</div>
 
     <div>
-      <button class="hint" onclick="giveHint()">💡</button>
-      <button class="hint" onclick="giveHint()">💡</button>
-      <button class="hint" onclick="giveHint()">💡</button>
+       <button class="hint" onclick="giveHint()">💡</button>
+       <button class="hint" onclick="giveHint()">💡</button>
+       <button class="hint" onclick="giveHint()">💡</button>
     </div>
     
     <div> 
-    <button class="button-play" onclick="onInitGame('beginner')">Beginner</button>
-    <button class="button-play" onclick="onInitGame('medium')">Medium</button>
-    <button class="button-play" onclick="onInitGame('expert')">Expert</button>
+       <button class="button-play" onclick="onInitGame('beginner')">Beginner</button>
+       <button class="button-play" onclick="onInitGame('medium')">Medium</button>
+       <button class="button-play" onclick="onInitGame('expert')">Expert</button>
     </div>
-    
-    <button onclick="restartGame()" class="restart-Game">Restart Game</button>
     
     <div class="stats">
       <span class="cells-revealed"></span>
       <span class="mines-left"></span>
       <span class="time-elapsed"></span>
-      </div>
+    </div>
+    
+    <div class="box-game"> 
+      <button onclick="restartGame()" class="restart-Game">😀</button>
+      <div class="board-container"></div>
+    </div>
+    
+    <div class="game-message"></div>
 
-      <div class="box-game"> 
-        <div class="game-message"></div>
-        <div class="board-container"></div>
-      </div>
-      
-      
     <script src="js/utils.js"></script>
     <script src="js/hint.js"></script>
     <script src="js/mine.js"></script>

@@ -84,5 +84,29 @@ function revealCell(i, j) {
         elCell.textContent = ''
       }, 1000)
     }
-}
+
+    if (gGame.shownCount === gGame.minesCount) {
+      updateSmiley('win')
+    }
   
+    
+    if (gGame.lives === 0) {
+      updateSmiley('lose')
+    }
+}
+
+function updateSmiley(state) {
+
+  const smileyButton = document.querySelector('.restart-Game')
+
+  switch (state) {
+    case 'win':
+      smileyButton.textContent = '😎'
+      break;
+    case 'lose':
+      smileyButton.textContent = '🤯'
+      break;
+    default:
+      smileyButton.textContent = '😀'
+  }
+}

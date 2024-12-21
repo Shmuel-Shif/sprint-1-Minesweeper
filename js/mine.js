@@ -93,13 +93,14 @@ function onCellMarked(elCell, i, j) {
 function restartGame() {
   clearInterval(gTimerInterval)
   initGame(gLevel)
-
+  
   remainingHints = 3  
   updateHintCounter()
-
+  
   gGame.lives = 3
   gGame.hearts = ['❤️','❤️','❤️']
   updateLivesDisplay()
+  updateSmiley('normal')
   
   const elMessage = document.querySelector('.game-message')
   elMessage.innerHTML = ''
@@ -108,12 +109,13 @@ function restartGame() {
 
 function loseLife() {
   if (gGame.hearts.length > 0) {
-    gGame.hearts.pop()
-    updateLivesDisplay()
+      gGame.hearts.pop()
+      updateLivesDisplay()
   }
 
   if (gGame.hearts.length === 0) {
     checkGameOver(false)
+    updateSmiley('lose')
   }
 }
 

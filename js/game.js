@@ -45,6 +45,8 @@ function onInitGame(level) {
 
   const elMessage = document.querySelector('.game-message')
   elMessage.innerHTML = ''
+
+  updateSmiley('normal')
 }
 
 function updateCellsRevealed() {
@@ -154,14 +156,16 @@ function expandShown(board, row, col) {
 function checkForWin() {
 
   if (gGame.markedCount === gGame.minesCount) {
+    
     const allFlagsCorrect = gBoard.every(row => 
-      row.every(cell => 
-        (cell.isMine && cell.isMarked) || (!cell.isMine && !cell.isMarked)
+      row.every(cell => (cell.isMine && cell.isMarked) ||
+                        (!cell.isMine && !cell.isMarked)
       )
     );
     
     if (allFlagsCorrect) {
       checkGameOver(true)
+      updateSmiley('win')
     }
   }
 }
@@ -174,9 +178,12 @@ function checkGameOver(isWin) {
     elMessage.innerHTML = 'You Win!'
     gGame.isOn = false
     stopTimer()
+    updateSmiley('win')
   } else {
     elMessage.innerHTML = 'You Lost. Game Over!'
     gGame.isOn = false
     stopTimer()
+    updateSmiley('lose')
   }
 }
+
